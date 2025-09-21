@@ -1,0 +1,68 @@
+{
+  "fighters": [
+    {
+      "name": "Whiskey Richard",
+      "health": 100,
+      "speed": 3,
+      "weapon": "Flaming Jug",
+      "methTality": "Fire breath explosion"
+    },
+    {
+      "name": "Soapless Joe",
+      "health": 90,
+      "speed": 4,
+      "weapon": "Mop Handle",
+      "methTality": "Melting bear hug"
+    }
+  ],
+
+  "vendors": [
+    {
+      "name": "Toothless Tina",
+      "item": "Mystery Syringe",
+      "effect": "random"
+    },
+    {
+      "name": "Coupon Carl",
+      "item": "Protein Bar (scam)",
+      "effect": "-10 Shiv Bux"
+    }
+  ],
+
+  "stages": [
+    {
+      "name": "Burning Bus Stop",
+      "hazards": ["Exploding pigeons", "Live wires"],
+      "transition": "Subway Pit"
+    },
+    {
+      "name": "Everglades Gas-N-Go",
+      "hazards": ["Gators", "Mosquito swarms"],
+      "transition": "Swamp Shack"
+    }
+  ],
+
+  "npc": [
+    {
+      "name": "Tripp Vlogz",
+      "role": "Influencer antagonist",
+      "quotes": ["I'm doing this to help the community... and my followers."]
+    },
+    {
+      "name": "Gator Granny",
+      "role": "Background NPC",
+      "action": "Throws candy and bullets"
+    }
+  ],
+
+  "gags": [
+    {
+      "stage": "Walmart Parking Lot",
+      "gag": "Roaming mobility scooters crash into fighters"
+    },
+    {
+      "stage": "Boardwalk Arcade",
+      "gag": "Animatronic band jumps out of jukebox"
+    }
+  ]
+}

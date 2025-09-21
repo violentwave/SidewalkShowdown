@@ -1,0 +1,84 @@
+{
+  "scripts": {
+    "fightLogic.js": "// Handles hit detection, health changes, combo triggers\nfunction attack(target, damage) {\n  target.health -= damage;\n}",
+
+    "hudUpdate.js": "// Updates health bars, Shiv Bux counter, and Meth-Tality indicators\nfunction updateHUD(p1, p2, shivBux) {\n  console.log(`${p1.name}: ${p1.health} HP | ${p2.name}: ${p2.health} HP | Shiv Bux: ${shivBux}`);\n}",
+
+    "vendorSystem.js": "// Logic for vendor spawns, scams, and purchases\nfunction triggerVendor(vendors) {\n  const vendor = vendors[Math.floor(Math.random() * vendors.length)];\n  return vendor;\n}",
+
+    "methTalitySystem.js": "// Handles cinematic kill move effects\nfunction performMethTality(fighter, target) {\n  target.health = 0;\n  console.log(`${fighter.name} performs ${fighter.methTality}!`);\n}",
+
+    "boutique.js": "// Shiv Bux store logic\nfunction purchaseItem(player, itemCost) {\n  if (player.shivBux >= itemCost) {\n    player.shivBux -= itemCost;\n    return true;\n  }\n  return false;\n}",
+
+    "aiBehavior.js": "// Simple AI attack rotation\nfunction basicAI(fighter) {\n  const roll = Math.random();\n  if (roll < 0.4) return 'light';\n  if (roll < 0.7) return 'heavy';\n  return 'special';\n}"
+  },
+
+  "data": {
+    "fighters.json": [
+      {
+        "name": "Whiskey Richard",
+        "health": 100,
+        "speed": 3,
+        "weapon": "Flaming Jug",
+        "methTality": "Fire breath explosion"
+      },
+      {
+        "name": "Soapless Joe",
+        "health": 90,
+        "speed": 4,
+        "weapon": "Mop Handle",
+        "methTality": "Melting bear hug"
+      }
+    ],
+
+    "vendors.json": [
+      {
+        "name": "Toothless Tina",
+        "item": "Mystery Syringe",
+        "effect": "random"
+      },
+      {
+        "name": "Coupon Carl",
+        "item": "Protein Bar (scam)",
+        "effect": "-10 Shiv Bux"
+      }
+    ],
+
+    "stages.json": [
+      {
+        "name": "Burning Bus Stop",
+        "hazards": ["Exploding pigeons", "Live wires"],
+        "transition": "Subway Pit"
+      },
+      {
+        "name": "Everglades Gas-N-Go",
+        "hazards": ["Gators", "Mosquito swarms"],
+        "transition": "Swamp Shack"
+      }
+    ],
+
+    "npc.json": [
+      {
+        "name": "Tripp Vlogz",
+        "role": "Influencer antagonist",
+        "quotes": ["I'm doing this to help the community... and my followers."]
+      },
+      {
+        "name": "Gator Granny",
+        "role": "Background NPC",
+        "action": "Throws candy and bullets"
+      }
+    ],
+
+    "gags.json": [
+      {
+        "stage": "Walmart Parking Lot",
+        "gag": "Roaming mobility scooters crash into fighters"
+      },
+      {
+        "stage": "Boardwalk Arcade",
+        "gag": "Animatronic band jumps out of jukebox"
+      }
+    ]
+  }
+}

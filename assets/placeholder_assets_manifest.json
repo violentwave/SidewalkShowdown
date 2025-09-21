@@ -1,0 +1,38 @@
+{
+  "assets": {
+    "characters": [
+      "WhiskeyRichard_idle.png",
+      "SoaplessJoe_idle.png",
+      "WhiskeyRichard_attack.png",
+      "SoaplessJoe_attack.png"
+    ],
+    "stages": [
+      "BurningBusStop.png",
+      "EvergladesGasNGo.png"
+    ],
+    "UI": [
+      "hudOverlay.png",
+      "shivBuxCounter.png",
+      "methTalitySplash.png"
+    ],
+    "npc": [
+      "TrippVlogz.png",
+      "GatorGranny.png"
+    ],
+    "effects": [
+      "explosion.png",
+      "ratSwarm.png"
+    ]
+  },
+  "audio": {
+    "music": [
+      "mainTheme.ogg",
+      "boutiqueTheme.ogg"
+    ],
+    "sfx": [
+      "punch1.wav",
+      "shivGain.wav",
+      "vendorPopup.wav"
+    ]
+  }
+}

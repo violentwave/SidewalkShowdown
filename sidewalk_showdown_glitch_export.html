@@ -1,0 +1,128 @@
+<!-- index.html for Glitch-ready build -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sidewalk Showdown</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>🧟‍♂️ SIDEWALK SHOWDOWN 🥊</h1>
+
+  <div class="hud" id="hud"></div>
+  <div class="buttons">
+    <button onclick="startRound()">Start Fight</button>
+    <button onclick="doAI()">Enemy AI</button>
+    <button onclick="triggerVendor()">Vendor Encounter</button>
+    <button onclick="useMethTality()">Meth-Tality</button>
+    <button onclick="endFight()">End Game</button>
+  </div>
+  <div class="log" id="log"></div>
+
+  <script src="scripts/fightLogic.js"></script>
+  <script src="scripts/hudUpdate.js"></script>
+  <script src="scripts/vendorSystem.js"></script>
+  <script src="scripts/methTalitySystem.js"></script>
+  <script src="scripts/boutique.js"></script>
+  <script src="scripts/aiBehavior.js"></script>
+  <script>
+    // Glue code
+    const log = document.getElementById("log");
+    const hud = document.getElementById("hud");
+
+    let shivBux = 0;
+
+    const fighter1 = {
+      name: "Whiskey Richard",
+      health: 100,
+      weapon: "Flaming Jug",
+      methTality: "Fire breath explosion"
+    };
+
+    const fighter2 = {
+      name: "Soapless Joe",
+      health: 90,
+      weapon: "Mop Handle",
+      methTality: "Melting bear hug"
+    };
+
+    const vendors = [
+      { name: "Toothless Tina", item: "Mystery Syringe", effects: ["speed boost", "blind", "invincible"] },
+      { name: "Gumbo Rick", item: "Power Slap", damage: 30 },
+      { name: "Coupon Carl", item: "Protein Bar (scam)", scam: true }
+    ];
+
+    function logText(text) {
+      log.innerText += `\n${text}`;
+      log.scrollTop = log.scrollHeight;
+    }
+
+    function startRound() {
+      logText(`🎬 FIGHT START: ${fighter1.name} vs ${fighter2.name}`);
+      updateHUD(fighter1, fighter2, shivBux);
+    }
+
+    function doAI() {
+      const move = basicAI(fighter2);
+      logText(`${fighter2.name} uses ${move} attack!`);
+      if (move === 'light') attack(fighter1, 5);
+      if (move === 'heavy') attack(fighter1, 15);
+      if (move === 'special') shivBux += 20;
+      updateHUD(fighter1, fighter2, shivBux);
+    }
+
+    function triggerVendor() {
+      const vendor = triggerVendorLogic(vendors);
+      logText(`Vendor: ${vendor.name} offers ${vendor.item}`);
+      shivBux -= 10;
+      updateHUD(fighter1, fighter2, shivBux);
+    }
+
+    function useMethTality() {
+      performMethTality(fighter1, fighter2);
+      logText(`${fighter2.name} defeated.`);
+      shivBux += 100;
+      updateHUD(fighter1, fighter2, shivBux);
+    }
+
+    function endFight() {
+      logText("🎉 All fighters jump Tripp Vlogz and destroy the camera. METH-TALITY!");
+    }
+
+    startRound();
+  </script>
+</body>
+</html>
+
+<!-- style.css file -->
+<style>
+  body {
+    background-color: #111;
+    color: #0f0;
+    font-family: monospace;
+    padding: 20px;
+  }
+  .hud {
+    background: #000;
+    padding: 10px;
+    border: 2px dashed #888;
+    margin-bottom: 20px;
+  }
+  .log {
+    white-space: pre-wrap;
+    background: #000;
+    border: 1px solid #444;
+    padding: 10px;
+    height: 300px;
+    overflow-y: scroll;
+  }
+  button {
+    padding: 8px 12px;
+    background: #333;
+    color: #0f0;
+    border: 1px solid #0f0;
+    cursor: pointer;
+    margin: 5px;
+  }
+</style>
