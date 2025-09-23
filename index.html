@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sidewalk Showdown</title>
+  <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+  <h1>🧟‍♂️ SIDEWALK SHOWDOWN 🥊</h1>
+  <div class="hud" id="hud"></div>
+  <div class="buttons">
+    <button onclick="startRound()">Start Fight</button>
+    <button onclick="doAI()">Enemy AI</button>
+    <button onclick="triggerVendor()">Vendor Encounter</button>
+    <button onclick="useMethTality()">Meth-Tality</button>
+    <button onclick="endFight()">End Game</button>
+  </div>
+  <div class="log" id="log"></div>
+  <script src="scripts/fightLogic.js"></script>
+  <script src="scripts/hudUpdate.js"></script>
+  <script src="scripts/vendorSystem.js"></script>
+  <script src="scripts/methTalitySystem.js"></script>
+  <script src="scripts/boutique.js"></script>
+  <script src="scripts/aiBehavior.js"></script>
+  <script>
+    // Glue code for game start and button functionality
+    const log = document.getElementById("log");
+    const hud = document.getElementById("hud");
+
+    let shivBux = 0;
+
+    const fighter1 = { name: "Whiskey Richard", health: 100, weapon: "Flaming Jug", methTality: "Fire breath explosion" };
+    const fighter2 = { name: "Soapless Joe", health: 90, weapon: "Mop Handle", methTality: "Melting bear hug" };
+
+    function logText(text) { log.innerText += `\n${text}`; log.scrollTop = log.scrollHeight; }
+    function startRound() { logText(`🎬 FIGHT START: ${fighter1.name} vs ${fighter2.name}`); updateHUD(fighter1, fighter2, shivBux, 1); }
+    function doAI() {
+      const move = basicAI(fighter2, fighter1, 1);
+      if (move === 'light') attack(fighter1, calculateDamage(fighter2, fighter1, 'light'));
+      if (move === 'heavy') attack(fighter1, calculateDamage(fighter2, fighter1, 'heavy'));
+      if (move === 'special') shivBux += 20;
+      updateHUD(fighter1, fighter2, shivBux, 1);
+    }
+    function triggerVendor() { const v = triggerVendorLogic(); shivBux = Math.max(0, shivBux - (v.cost || 10)); updateHUD(fighter1, fighter2, shivBux, 1); }
+    function useMethTality() { shivBux += (performMethTality(fighter1, fighter2) || 100); updateHUD(fighter1, fighter2, shivBux, 1); }
+    function endFight() { logText("🎉 All fighters jump Tripp Vlogz and destroy the camera. METH-TALITY!"); }
+    startRound();
+  </script>
+</body>
+</html>
